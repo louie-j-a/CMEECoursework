@@ -1,0 +1,13 @@
+#3a
+wc -l Data/fasta/*.fasta
+#3b
+tail -n +2 Data/fasta/E.coli.fasta
+#3c
+tail -n+2 Data/fasta/E.coli.fasta|tr -d "\n" | wc -m
+#3d
+tail -n+2 Data/fasta/E.coli.fasta|tr -d "\n" | grep -o "ATGC"| wc -l
+#3e
+
+var1=$(tail -n +2 Data/fasta/E.coli.fasta | tr -d "\n" | grep -o "A\|T" | wc -l) && var2=$(tail -n +2 Data/fasta/E.coli.fasta | tr -d "\n" | grep -o "G\|C" | wc -l) && echo $var1 $var2 # if there's a | in the space of the last && only var 1 is printed
+
+var1=$(tail -n +2 ../Data/fasta/E.coli.fasta | tr -d "\n" | grep -o "A\|T" | wc -l) && var2=$(tail -n +2 ../Data/fasta/E.coli.fasta | tr -d "\n" | grep -o "G\|C" | wc -l) && echo "scale=3;$var1/$var2" | bc # check man echo | bc
