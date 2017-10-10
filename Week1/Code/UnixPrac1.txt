@@ -1,13 +1,22 @@
-#3a
-wc -l Data/fasta/*.fasta
-#3b
-tail -n +2 Data/fasta/E.coli.fasta
-#3c
-tail -n+2 Data/fasta/E.coli.fasta|tr -d "\n" | wc -m
-#3d
-tail -n+2 Data/fasta/E.coli.fasta|tr -d "\n" | grep -o "ATGC"| wc -l
-#3e
+#Count how many lines are in each file in the fasta directory
 
-var1=$(tail -n +2 Data/fasta/E.coli.fasta | tr -d "\n" | grep -o "A\|T" | wc -l) && var2=$(tail -n +2 Data/fasta/E.coli.fasta | tr -d "\n" | grep -o "G\|C" | wc -l) && echo $var1 $var2 # if there's a | in the space of the last && only var 1 is printed
+wc -l ../Data/fasta/*.fasta 
 
-var1=$(tail -n +2 ../Data/fasta/E.coli.fasta | tr -d "\n" | grep -o "A\|T" | wc -l) && var2=$(tail -n +2 ../Data/fasta/E.coli.fasta | tr -d "\n" | grep -o "G\|C" | wc -l) && echo "scale=3;$var1/$var2" | bc # check man echo | bc
+
+#Print the E.coli genome starting from the second line, as the first line has species name rather than any coding sequences
+
+tail -n +2 ../Data/fasta/E.coli.fasta 
+
+
+#Count the sequence length of E.coli genome. Note that each new line is produced using a hidden newline character, these must be removed before sequence length can be counted, hence the tr -d "\n"
+
+tail -n+2 ../Data/fasta/E.coli.fasta|tr -d "\n" | wc -m 
+
+
+#Count the number of matches of the sequence "ATGC" in the E.coli genome
+
+tail -n+2 ../Data/fasta/E.coli.fasta|tr -d "\n" | grep -o "ATGC"| wc -l
+
+#Compute the AT/GC ratio in the E.coli genome
+
+var1=$(tail -n +2 ../Data/fasta/E.coli.fasta | tr -d "\n" | grep -o "A\|T" | wc -l) && var2=$(tail -n +2 ../Data/fasta/E.coli.fasta | tr -d "\n" | grep -o "G\|C" | wc -l) && echo "scale=3;$var1/$var2" | bc
