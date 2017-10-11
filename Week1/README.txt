@@ -5,6 +5,9 @@
 boilerplate.sh - shell sript used as a basic demo, contains shebang (used to tell bash interpreter that this is a bash script).
 
 
+CompileLaTeX.sh - Compiles a pdf from a .tex script; also cleans up by removing certain file types.
+
+
 ConcatenateTwoFIles.sh - shell script which concatenates two given files in to a new file.
 
 
@@ -14,7 +17,7 @@ CountLines.sh - shell script to count the number of lines in a given file.
 csvtospace.sh - shell script that takes a csv file as an input and gives a space separated values file as an output, without replacing the input file.
 
 
-MyExampleScript.sh - shell script, prompts user for an input and outputs a related message.
+MyExampleScript.sh - shell script, outputs a message 'Hello $USER'.
 
 
 tabtocsv.sh - shell script; converts tab seperated files to comma separated files.
@@ -57,6 +60,8 @@ spawannxs.txt - List of protected species from UN website, used to demonstrate g
 
 
 fasta (folder) - contains data used for first practical
+
+
 
 
 ~/CMEECourseWork/Week1/Data/fasta

@@ -2,7 +2,6 @@
 # Author: Louie Adams la2417@imperial.ac.uk
 # Script: ConcatenateTwoFiles.sh
 # Desc: Concatenates two files
-# Arguments: 1-> file 2-> file
 # Date: Oct 2015
 
 cat $1 > $3
