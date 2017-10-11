@@ -17,6 +17,12 @@ CountLines.sh - shell script to count the number of lines in a given file.
 csvtospace.sh - shell script that takes a csv file as an input and gives a space separated values file as an output, without replacing the input file.
 
 
+FirstBiblio.bib - creates bibliography in LaTeX.
+
+
+FirstExample - gives instructions on how I want my pdf to be made. 
+
+
 MyExampleScript.sh - shell script, outputs a message 'Hello $USER'.
 
 
