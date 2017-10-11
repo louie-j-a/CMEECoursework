@@ -81,3 +81,12 @@ fasta (folder) - contains data used for first practical
 
 
 E.coli.fasta - fasta file containing the sequenced E.coli genome
+
+
+
+
+~/CMEECourseWork/Week1/Results
+
+
+
+FirstExample.pdf - short pdf file created using LaTeX.
