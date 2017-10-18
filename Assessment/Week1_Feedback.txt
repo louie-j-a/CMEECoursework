@@ -1,0 +1,599 @@
+Starting weekly assessment for Louie, Week1
+
+Current Marks = 100
+
+Note that: 
+(1) Major sections begin with a double "====" line 
+(2) Subsections begin with a single "====" line 
+(3) Code output or text file content are printed within single "*****" lines 
+
+======================================================================
+======================================================================
+Your Git repo size this week is about 1.56 MiB on disk 
+
+PART 1: Checking project workflow...
+
+Found the following directories in parent directory: Week1, Assessment, Week2, .git
+
+Found the following files in parent directory: README.txt, .gitignore
+
+Checking for key files in parent directory...
+
+Found .gitignore in parent directory, great! 
+
+Printing contents of .gitignore:
+**********************************************************************
+*~ 
+*.tmp
+**********************************************************************
+
+Found README in parent directory, named: README.txt
+
+Printing contents of README.txt:
+**********************************************************************
+My CMEE 2017-18 Coursework Repository
+
+Week 1; work done on; introduction to UNIX - Practical 1 is in this section, can be found in Week1/Code/UnixPrac1.txt; Shell scripting - Practical 2 here, csvtospace.sh is from this practical; version control using github; the use of LaTeX for writing scientific papers 
+**********************************************************************
+
+======================================================================
+Looking for the weekly directories...
+
+Found 2 weekly directories: Week1, Week2
+
+The Week1 directory will be assessed 
+
+======================================================================
+======================================================================
+PART 2: Checking weekly code and workflow...
+
+======================================================================
+Assessing WEEK1...
+
+Found the following directories: Code, Data, Sandbox, Results
+
+Found the following files: README.txt
+
+Checking for readme file in weekly directory...
+
+Found README in parent directory, named: README.txt
+
+Printing contents of README.txt:
+**********************************************************************
+~/CMEECourseWork/Week1/Code
+
+
+
+boilerplate.sh - shell sript used as a basic demo, contains shebang (used to tell bash interpreter that this is a bash script).
+
+
+CompileLaTeX.sh - Compiles a pdf from a .tex script; also cleans up by removing certain file types.
+
+
+ConcatenateTwoFIles.sh - shell script which concatenates two given files in to a new file.
+
+
+CountLines.sh - shell script to count the number of lines in a given file.
+
+
+csvtospace.sh - shell script that takes a csv file as an input and gives a space separated values file as an output, without replacing the input file.
+
+
+FirstBiblio.bib - creates bibliography in LaTeX.
+
+
+FirstExample - gives instructions on how I want my pdf to be made. 
+
+
+MyExampleScript.sh - shell script, outputs a message 'Hello $USER'.
+
+
+tabtocsv.sh - shell script; converts tab seperated files to comma separated files.
+
+
+variables.sh - shell script used to demonstrate variable assignment.
+
+
+UnixPrac1.txt - contains contents of first practical.
+
+
+
+
+
+~/CMEECourseWork/Week1/Data
+
+
+
+1800.csv - csv file used by the csvtospace.sh shell script in practical 2
+
+1800.csv.txt - space separated file created by csvtospace.sh shell script in practical 2
+
+
+1801.csv - csv file used by the csvtospace.sh shell script in practical 2
+
+1801.csv.txt - space separated file created by csvtospace.sh shell script in practical 2
+
+
+1802.csv - csv file used by the csvtospace.sh shell script in practical 2
+
+1802.csv.txt - space separated file created by csvtospace.sh shell script in practical 2
+
+
+1803.csv - csv file used by the csvtospace.sh shell script in practical 2
+
+1803.csv.txt- space separated file created by csvtospace.sh shell script in practical 2
+
+
+spawannxs.txt - List of protected species from UN website, used to demonstrate grep
+
+
+fasta (folder) - contains data used for first practical
+
+
+
+
+~/CMEECourseWork/Week1/Data/fasta
+
+
+
+407228326.fasta - fasta file containing sequence data for the Homo sapiens x Mus musculus hybrid cell line GM11713 FHIT gene
+
+
+407228412.fasta - fasta file containing sequence data for the Homo sapiens tryptase beta 2 (gene/pseudogene) 
+
+
+E.coli.fasta - fasta file containing the sequenced E.coli genome
+
+
+
+
+~/CMEECourseWork/Week1/Results
+
+
+
+FirstExample.pdf - short pdf file created using LaTeX.
+**********************************************************************
+
+Found 12 code files: ConcatenateTwoFiles.sh, .txt, CountLines.sh, variables.sh, CompileLaTeX.sh, csvtospace.sh, FirstExample.tex, MyExampleScript.sh, FirstBiblio.bib, UnixPrac1.txt, tabtocsv.sh, boilerplate.sh
+
+Found the following extra files: .csv, .log, .gitignore
+0.5 pt deducted per extra file
+
+Current Marks = 98.5
+
+======================================================================
+Testing script/code files...
+
+======================================================================
+Inspecting script file ConcatenateTwoFiles.sh...
+
+File contents are:
+**********************************************************************
+#!/bin/bash
+# Author: Louie Adams la2417@imperial.ac.uk
+# Script: ConcatenateTwoFiles.sh
+# Desc: Concatenates two files
+# Date: Oct 2015
+
+cat $1 > $3
+cat $2 >> $3
+echo "Merged File is"
+cat $3
+
+exit 
+**********************************************************************
+
+Testing ConcatenateTwoFiles.sh...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+Merged File is
+
+**********************************************************************
+
+Encountered error:
+ConcatenateTwoFiles.sh: line 7: $3: ambiguous redirect
+ConcatenateTwoFiles.sh: line 8: $3: ambiguous redirect
+
+======================================================================
+Inspecting script file .txt...
+
+File contents are:
+**********************************************************************
+**********************************************************************
+
+Testing .txt...
+
+======================================================================
+Inspecting script file CountLines.sh...
+
+File contents are:
+**********************************************************************
+#!/bin/bash
+# Author: Louie Adams la2417@imperial.ac.uk
+# Script: CountLines.sh
+# Date: Oct 2015
+
+NumLines=`wc -l < $1`
+echo "The file $l has $NumLines lines"
+echo
+
+exit 
+**********************************************************************
+
+Testing CountLines.sh...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+The file  has  lines
+
+
+**********************************************************************
+
+Encountered error:
+CountLines.sh: line 6: $1: ambiguous redirect
+
+======================================================================
+Inspecting script file variables.sh...
+
+File contents are:
+**********************************************************************
+#!/bin/bash
+# Author: Louie Adams la2417@imperial.ac.uk
+# Date: Oct 2017
+# Script: variables.sh
+# Shows the use of variables
+
+MyVar='some string'
+echo 'the current value of the variable is' $MyVar
+echo 'Please enter a new string'
+read MyVar
+echo 'the current value of the variable is' $MyVar
+## Reading multiple values
+echo 'Enter two numbers separated by space(s)'
+read a b 
+echo 'you entered' $a 'and' $b '. Their sum is:'
+mysum=`expr $a + $b` 
+echo $mysum
+
+exit
+**********************************************************************
+
+Testing variables.sh...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+the current value of the variable is some string
+Please enter a new string
+the current value of the variable is
+Enter two numbers separated by space(s)
+you entered and . Their sum is:
+
+
+**********************************************************************
+
+Encountered error:
+expr: syntax error
+
+======================================================================
+Inspecting script file CompileLaTeX.sh...
+
+File contents are:
+**********************************************************************
+#!/bin/bash
+pdflatex $1.tex
+pdflatex $1.tex
+bibtex $1
+bibtex $1
+pdflatex $1.tex
+pdflatex $1.tex
+evince $1.pdf &
+
+## Cleanup
+rm *~
+rm *.aux
+rm *.dvi
+rm *.log
+rm *.nav
+rm *.out
+rm *.snm
+rm *.toc
+**********************************************************************
+
+Testing CompileLaTeX.sh...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(/usr/share/texlive/texmf-dist/tex/latex/tools/.tex
+LaTeX2e <2016/02/01>
+Babel <3.9q> and hyphenation patterns for 81 language(s) loaded.
+File ignored)
+*
+! Emergency stop.
+<*> .tex
+        
+!  ==> Fatal error occurred, no output PDF file produced!
+Transcript written on .log.
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (pre
+**********************************************************************
+
+Encountered error:
+bibtex: Need exactly one file argument.
+Try `bibtex --help' for more information.
+bibtex: Need exactly one file argument.
+Try `bibtex --help' for more information.
+rm: cannot remove '*~': No such file or directory
+rm: cannot remove '*.aux': No such file or directory
+rm: cannot remove '*.dvi': No such file or directory
+rm: cannot remove '*.log': No such file or directory
+rm: cannot remove '*.nav': No such file or directory
+rm: cannot remove '*.out': No such file or directory
+rm: cannot remove '*.snm': No such file or directory
+rm: cannot remove '*.toc': No such file or directory
+
+** (evince:7810): WARNING **: Error when getting information for file '/home/mhasoba/Documents/Teaching/IC_CMEE/2017-18/Coursework/StudentRepos/LouieAdams_LA2417/Week1/Code/.pdf': No such file or directory
+
+** (evince:7810): WARNING **: Error setting file metadata: No such file or directory
+
+** (evince:7810): WARNING **: Error setting file metadata: No such file or directory
+
+** (evince:7810): WARNING **: Error setting file metadata: No such file or directory
+
+** (evince:7810): WARNING **: Error setting file metadata: No such file or directory
+
+** (evince:7810): WARNING **: Error setting file metadata: No such file or directory
+
+** (evince:7810): WARNING **: Error setting file metadata: No such file or directory
+
+** (evince:7810): WARNING **: Error setting file metadata: No such file or directory
+
+** (evince:7810): WARNING **: Error setting file metadata: No such file or directory
+
+** (evince:7810): WARNING **: Error setting file metadata: No such file or directory
+
+** (evince:7810): WARNING **: Error setting file metadata: No such file or directory
+
+** (evince:7810): WARNING **: Error setting file metadata: No such file or directory
+
+======================================================================
+Inspecting script file csvtospace.sh...
+
+File contents are:
+**********************************************************************
+#!/bin/bash
+# Author: Louie Adams la2417@imperial.ac.uk
+# Script: csvtospace.sh
+# Desc: substitute the commas in the files with space
+# saves the output into a space separated values file
+# Arguments: 1-> comma delimited file
+# Date: Oct 2015
+
+echo "Creating a space delimted version of $1 ..."
+
+cat $1 | tr -s "," " " >> $1.txt
+
+echo "Done!"
+
+exit 
+**********************************************************************
+
+Testing csvtospace.sh...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+Creating a space delimted version of  ...
+Done!
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.00586s
+
+======================================================================
+Inspecting script file FirstExample.tex...
+
+File contents are:
+**********************************************************************
+\documentclass[12pt]{article}
+\title{A Simple Document}
+\author{Louie Adams}
+\date{10.10.2017}
+\begin{document}
+	\maketitle
+	
+	\begin{abstract}
+		This paper must be cool!
+	\end{abstract}
+	
+	\section{Introduction}
+		Blah Blah!
+		
+	\section{Materials \& Methods}
+	One of the most famous equations is:
+	\begin{equation}
+		E = mc^2
+	\end{equation}
+	This equation was first proposed by Einstein in 1905
+	\cite{einstein1905does}.
+	
+	\bibliographystyle{plain}
+	\bibliography{FirstBiblio}
+\end{document}
+**********************************************************************
+
+Testing FirstExample.tex...
+
+======================================================================
+Inspecting script file MyExampleScript.sh...
+
+File contents are:
+**********************************************************************
+#!/bin/bash
+# Author: Louie Adams la2417@imperial.ac.uk
+# Script: MyExampleScript.sh
+# Date: Oct 2015
+
+msg1="Hello"
+msg2=$USER
+echo "$msg1 $msg2"
+
+echo "Hello $USER"
+echo
+
+exit  
+**********************************************************************
+
+Testing MyExampleScript.sh...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+Hello mhasoba
+Hello mhasoba
+
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.00442s
+
+======================================================================
+Inspecting script file FirstBiblio.bib...
+
+File contents are:
+**********************************************************************
+@article{einstein1905does,
+  title={Does the inertia of a body depend upon its energy-content},
+  author={Einstein, Albert},
+  journal={Ann Phys},
+  volume={18},
+  pages={639--641},
+  year={1905}
+}
+**********************************************************************
+
+Testing FirstBiblio.bib...
+
+======================================================================
+Inspecting script file UnixPrac1.txt...
+
+File contents are:
+**********************************************************************
+#Count how many lines are in each file in the fasta directory
+
+wc -l ../Data/fasta/*.fasta 
+
+
+#Print the E.coli genome starting from the second line, as the first line has species name rather than any coding sequences
+
+tail -n +2 ../Data/fasta/E.coli.fasta 
+
+
+#Count the sequence length of E.coli genome. Note that each new line is produced using a hidden newline character, these must be removed before sequence length can be counted, hence the tr -d "\n"
+
+tail -n+2 ../Data/fasta/E.coli.fasta|tr -d "\n" | wc -m 
+
+
+#Count the number of matches of the sequence "ATGC" in the E.coli genome
+
+tail -n+2 ../Data/fasta/E.coli.fasta|tr -d "\n" | grep -o "ATGC"| wc -l
+
+#Compute the AT/GC ratio in the E.coli genome
+
+var1=$(tail -n +2 ../Data/fasta/E.coli.fasta | tr -d "\n" | grep -o "A\|T" | wc -l) && var2=$(tail -n +2 ../Data/fasta/E.coli.fasta | tr -d "\n" | grep -o "G\|C" | wc -l) && echo "scale=3;$var1/$var2" | bc
+**********************************************************************
+
+Testing UnixPrac1.txt...
+
+======================================================================
+Inspecting script file tabtocsv.sh...
+
+File contents are:
+**********************************************************************
+#!/bin/bash
+# Author: Louie Adams la2417@imperial.ac.uk
+# Script: tabtocsv.sh
+# Desc: substitute the tabs in the files with commas
+# saves the output into a .csv file
+# Arguments: 1-> tab delimited file
+# Date: Oct 2015
+
+echo "Creating a comma delimted version of $1 ..."
+
+cat $1 | tr -s "\t" "," >> $1.csv
+
+echo "Done!"
+
+exit 
+**********************************************************************
+
+Testing tabtocsv.sh...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+Creating a comma delimted version of  ...
+Done!
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.00494s
+
+======================================================================
+Inspecting script file boilerplate.sh...
+
+File contents are:
+**********************************************************************
+#!/bin/bash
+# Author: Louie Adams la2417@imperial.ac.uk
+# Script: boilerplate.sh
+# Desc: simple boilerplate for shell scripts
+# Arguments: none
+# Date: Oct 2017
+
+echo -e "\nThis is a shell script! \n" #what does minus e do?
+
+#exit
+**********************************************************************
+
+Testing boilerplate.sh...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+This is a shell script! 
+
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.00358s
+
+======================================================================
+======================================================================
+Finished running scripts
+
+Ran into 4 errors
+
+======================================================================
+======================================================================
+
+FINISHED WEEKLY ASSESSMENT
+
+Current Marks for the Week = 98.5
+
+NOTE THAT THESE ARE NOT THE FINAL MARKS FOR THE WEEK, BUT AN UPPER BOUND ON THE MARKS!
