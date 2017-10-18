@@ -1,11 +1,10 @@
 #!/usr/bin/env python
 
-"""Some functions exemplifying control flow"""
-__author__ = 'Louie Adams (la2417@ic.ac.uk), copied from CMEE Coursebook 2017
+"""Some functions exemplifying control statements"""
+__author__ = 'Louie Adams (la2417@ic.ac.uk), copied from CMEE Coursebook 2017'
 __date__ = '10.10.2017'
-# Filename cfexercises.py
 
-# How many times will 'hello' be printed?
+
 #1)
 for i in range(3, 17):
 	print 'hello'
@@ -38,22 +37,26 @@ while z < 100:
 		print 'hello'
 	z = z + 1
 	
-# What does fooXX do?
 import sys
 
 def foo1(x):
-	return x ** 0.5
+"""square root of x"""
+	return x ** 0.5 # x to the power of 1/2
 	
 def foo2(x, y):
-	if x > y:
-		return x
-	return y
+"""State which argument is larger"""
+	if x > y: 
+		return x #if x is bigger than y, return x
+	return y #if not then return y
 	
-def foo3(x, y, z):
+def foo3(x, y, z): 
+"""re-orders 3 arguments (not always in ascending order)"""	
+	#if x is bigger than y, switch their positions
 	if x > y:
 		tmp = y
 		y = x
 		x = tmp
+	#if y is bigger than z, switch their positions	
 	if y > z:
 		tmp = z
 		z = y
@@ -61,23 +64,24 @@ def foo3(x, y, z):
 	return [x, y, z]
 	
 def foo4(x):
+"""find factorial of x"""
 	result = 1
 	for i in range(1, x + 1):
-		result = result * i
+		result = result * i # result equals the product of all integers from 1 to i
 	return result
 	
 # This is a recursive function, meaning that the function calls itself
 # read about it at 
 # en.wikipedia.org/wiki/Recursion_(computer_science)
 def foo5(x):
+"""find factorial of x using recursion"""
 	if x == 1:
 		return 1
-	return x * foo5(x - 1)
+	return x * foo5(x - 1) # iterates through x * x-1 until x-1 = 1 
 	
 foo5(10)
 
 def main(argv):
-	# sys.exit("don't want to do this right now!")
 	print foo1(22)
 	print foo2(33, 22)
 	print foo3(15, 2, 1)

@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 
-"""Some functions exemplifying the use of control statements"""
+"""Some functions exemplifying the use of doctests"""
 #docstrings are considered part of the running code (normal comments are 
 #stripped). Hence, you can access your docstrings at run time.	
-__author__ = 'Louie Adams (la2417@imperial.ac.uk)'
+__author__ = 'Samraat Pawar (s.pawar@imperial.ac.uk)'
 __version__ = '0.0.1'
 
 import sys

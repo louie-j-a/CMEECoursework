@@ -1,3 +1,13 @@
+#!/usr/bin/env python
+
+"""Demonstrate list copmrehensions"""
+	
+__author__ = 'Samraat Pawar (s.pawar@imperial.ac.uk)'
+__version__ = '0.0.1'
+__date__ = '18.10.2017'
+
+
+
 ## Let's find just those taxa that are oak trees from a list of species
 
 taxa = [ 'Quercus robur',
@@ -31,3 +41,4 @@ print oaks_loops
 ##Get names in UPPER CASE using list comprehensions
 oaks_lc = set([species.upper() for species in taxa if is_an_oak(species)])
 print oaks_lc
+

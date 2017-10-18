@@ -1,3 +1,13 @@
+#!/usr/bin/env python
+
+"""Demonstrate the use of loops"""
+	
+__author__ = 'Samraat Pawar (s.pawar@imperial.ac.uk)'
+__version__ = '0.0.1'
+__date__ = '18.10.2017'
+
+
+
 # for loops in Python
 for i in range(5):
 	print i

@@ -3,12 +3,13 @@
 """Some functions exemplifying the use of control statements"""
 #docstrings are considered part of the running code (normal comments are 
 #stripped). Hence, you can access your docstrings at run time.	
+
 __author__ = 'Samraat Pawar (s.pawar@imperial.ac.uk)'
 __version__ = '0.0.1'
 
 import sys
 
-def even_or_odd(x=5): # if not specified, x should take value 0
+def even_or_odd(x=0): # if not specified, x should take value 0
 
 	"""Find whether a number x is even or odd."""
 	if x % 2 == 0: #The conditional if 

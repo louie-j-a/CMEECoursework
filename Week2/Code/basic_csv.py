@@ -1,3 +1,12 @@
+#!/usr/bin/env python
+
+"""Demonstrate how to read and write .csv files"""
+	
+__author__ = 'Samraat Pawar (s.pawar@imperial.ac.uk)'
+__version__ = '0.0.1'
+__date__ = '18.10.2017'
+
+
 import csv 
 
 # Read a file containing:
