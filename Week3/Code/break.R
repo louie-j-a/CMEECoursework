@@ -1,3 +1,8 @@
+#!/usr/bin/env Rscript
+#Author: Louie Adams la2417@ic.ac.uk
+#Date: 10.2017
+#Version: 0.0.1 
+
 i <- 0 #Initialize i
 while(i < Inf) {
   if (i == 20) {

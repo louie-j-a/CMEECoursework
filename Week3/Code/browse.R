@@ -1,3 +1,8 @@
+#!/usr/bin/env Rscript
+#Author: Louie Adams la2417@ic.ac.uk
+#Date: 10.2017
+#Version: 0.0.1 
+
 Exponential <- function(N0 = 1, r = 1, generations = 10){
   # Runs a simulation of exponential growth
   # Returns a vector of length generations

@@ -1,4 +1,8 @@
-#!/usr/bin/env R
+#!/usr/bin/env Rscript
+#Author: Louie Adams la2417@ic.ac.uk
+#Date: 10.2017
+#Version: 0.0.1 
+
 
 ### Read in csv file and assign to variable
 rm(list=ls())

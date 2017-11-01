@@ -1,3 +1,8 @@
+#!/usr/bin/env Rscript
+#Author: Louie Adams la2417@ic.ac.uk
+#Date: 10.2017
+#Version: 0.0.1 
+
 MyFunction <- function(Arg1, Arg2) {
 	
 	#statements involving Arg1, Arg2:

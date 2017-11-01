@@ -1,3 +1,8 @@
+#!/usr/bin/env Rscript
+#Author: Louie Adams la2417@ic.ac.uk
+#Date: 10.2017
+#Version: 0.0.1 
+
 M <- matrix(runif(1000000),1000,1000)
 
 SumAllElements <- function(M) {

@@ -1,0 +1,26 @@
+\documentclass[12pt]{article}
+\title{Key West Temperature Autocorrelation}
+\author{Louie Adams}
+\date{31.10.2017}
+\begin{document}
+	\maketitle
+	
+	\begin{abstract}
+		Mean annual temperature data for Key West, Florida, was \linebreak analysed to check for a correlation between the mean temperature of successive years, between 1901 to 2000. A positive correlation was found to exist with 95\% confidence. 
+	\end{abstract}
+	
+	\section{Introduction}
+		Key West is an archapeligo off the coast of Florida, USA. Mean annual temperature data exists for the region for the years 1901 to 2000.  
+		
+	\section{Materials \& Methods}
+	The cor() function in R (version 3.2.3) was used to test for a correlation between the mean annual temperatures of successive years. As the temperature measurements taken from successive time-points are not independent of one another, the p-value associated with the correlation coefficient provided by cor() could not be used, so a p-value was calculated spearately. In order to estimate a p-value, the correlation coefficient for n-1 random pairs of years in the time series (where n = number of years) was calculated, this was repeated 10,000 times to generate a null distribution of correlation coefficients. The estimated p-value was set as the ratio of correlation coefficients for random pairs that were greater than the single correlation coefficient found for successive years. 
+
+	\section{Results}
+	Pearson's correlation coefficient, r, was found to be 0.326, with an associated p-value estimated to be 7e\textsuperscript{-04}. 
+	
+	\section{Discussion}
+	An r value of 0.326 indicates a positive correlation between the mean annual temperatures of successive years. As the p-value is extremely low, we can reject the null hypothesis that there is no correlation between the mean temperatures of successive years.
+	
+	
+	
+\end{document}

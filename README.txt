@@ -6,3 +6,10 @@ Week 1; work done on; introduction to UNIX - Practical 1 is in this section, can
 Week 2; Intro to python - variables; data types; reading in /writing out files; control statements, loops and list comprehensions; debugging; 3 practicals in sections 15.10.2, 15.12.1 and 15.13.4
 Some advanced python started this week but will pick up in week 6
 
+
+Week3; Intro to R - variables; data types; importing/exporting data; control statements. 
+	Advanced topics in R - vectorisation (*apply); more control flow; generating random numbers; 		debugging; 
+	Data Exploration - basic plotting; ggplot; data wrangling
+
+
+Week4; Stats with sparrows week; stats in R; t-tests; degrees of freedom; linear models; 
