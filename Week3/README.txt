@@ -28,7 +28,8 @@
 │   └── trees.csv - statistics on various trees, used in get_TreeHeight.R
 ├── README.txt
 ├── Results
-│   └── README.txt
+│   ├── README.txt
+│   └── TAutoCorr.pdf - write up for TAutoCorr.R, analyse results etc.
 └── Sandbox
     ├── ggplotstuff.R
     ├── moreggplotstuff.R
