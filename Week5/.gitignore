@@ -1,0 +1,7 @@
+!Data/
+Data/*/
+Data/*.tif
+Data/*.csv
+Data/clc_legend_qgis.txt
+Results/FirstMap.qgs
+Results/zonalstats.csv

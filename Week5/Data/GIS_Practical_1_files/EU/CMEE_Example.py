@@ -40,18 +40,18 @@ for eachVar in bioclimVars:
 # Use GDAL command line to convert the landcover data
 # - cut out a UK block
 cmd = ('gdal_translate -projwin 2800000.0 4200000.0 4000000.0 3000000.0 '
-       '-of GTiff G250_06.tif G250_06_UK.tif')
+       '-of GTiff ../Data/g250_06.tif ../Data/g250_06_UK.tif')
 os.system(cmd)
 
 # - reproject and resample into a 2 km grid
 cmd = ('gdalwarp -overwrite -s_srs EPSG:3035 -t_srs EPSG:27700 -r near '
        '-of GTiff -tr 2000 2000 -te -220000 -10000 680000 1080000 '
-       'G250_06_UK.tif G250_06_UK_BNG.tif')
+       '../Data/g250_06_UK.tif ../Data/G250_06_UK_BNG.tif')
 os.system(cmd)
 
 # tidy up the intermediate files
-intermediates = ['G250_06_UK.tif', 'bio1_merge.tif', 'bio1_UK.tif',
-                 'bio12_merge.tif', 'bio12_UK.tif']
+intermediates = ['../Data/g250_06_UK.tif', '../Data/bio1_merge.tif', '../Data/bio1_UK.tif',
+                 '../Data/bio12_merge.tif', '../Data/bio12_UK.tif']
 for x in intermediates:
     os.remove(x)
 
@@ -95,7 +95,7 @@ def meanExtract(lcc, classMap, data):
     return round(vals.mean(), 2)
 
 # Load the landcover data into an array
-landcover = gdal.Open('G250_06_UK_BNG.tif')
+landcover = gdal.Open('../Data/G250_06_UK_BNG.tif')
 lcData = landcover.ReadAsArray()
 
 # find the set of landcover classes
@@ -110,7 +110,7 @@ columns = [list(lcClasses)] + zonalMeans
 rows = zip(*columns)
 
 # write the rows out to a file
-with open('zonalstats.csv', 'wb') as csvfile:
+with open('../Results/zonalstats.csv', 'wb') as csvfile:
     c = csv.writer(csvfile)
     c.writerow(['LCC', 'bio1', 'bio12'])
     for x in rows:

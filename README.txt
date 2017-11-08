@@ -13,3 +13,6 @@ Week3; Intro to R - variables; data types; importing/exporting data; control sta
 
 
 Week4; Stats with sparrows week; stats in R; t-tests; degrees of freedom; linear models; 
+
+
+Week5; QGIS; map projections; map making in python; converting map file formats; zonal stats; raster merging; 

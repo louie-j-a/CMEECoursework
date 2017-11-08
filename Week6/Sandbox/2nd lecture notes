@@ -1,0 +1,53 @@
+second lecture for genomics and bioinformatics
+------------------------------------------------------------------------
+
+four character states
+data ca nbe stored as text
+---------------------------------------
+
+file formats: FASTA
+
+header (sequence id)
+dna or rna seq
+
+might not be able to get polymorhpic data for diploid species in one file
+----------------------------------------------------
+
+FASTQ
+
+newer than FASTA
+
+header
+sequence
++
+qulaity score line, alphabetic code showing confidence each position is correct
+-----------------------------------------------
+
+VCF
+
+variant call format
+
+variable sites in genome
+--------------------------------------------------------
+
+PLINK
+
+just SNPs
+
+two or three files per data set
+genotype file
+family file (info on samples themselves)
+marker infor (position in genome etc.)
+
+missed stuff here but can prob google how to read these file types
+----------------------------------------------------------------
+
+software for genomic analysis
+
+see slides for packages to install in R
+---------------------------------------
+
+missed stuff here
+--------------------------------------------
+
+

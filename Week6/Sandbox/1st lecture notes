@@ -1,0 +1,168 @@
+intro to genomics
+--------------------------------
+
+ingredients;
+inheritance
+information
+variation
+--------------------------------
+
+goal;
+hpw genomic data is produced
+sources of available data
+sources of dna
+types of qs to be addressed
+become familiar with some common analytical methods
+---------------------------------------
+
+genomic data?;
+
+relatedness, individual, populations
+geographic structure
+migration
+connectivity
+demographic - past population growth/decline
+--------------------------------------------------------
+
+phylogenetics
+
+------------------------
+
+functional genetics
+need to know what genes are, find relation ship between genes and phenotype
+e.g. Claes et al mapped (3D) human faces, map how much african face and how much  european, match to genome, good correlation
+
+found 25 genes to explain variation in facial morphology
+---------------------------------
+
+behavioural genetics;
+
+hamadryas and anubis baboon range overlaps. 
+hamadryas live in large groups with harems (one male units) that dont overlap
+anubis, mixed males and females, males only guard eostrus females.
+
+where the two sp meet there are often hybrids. Sometimes one indiv might live in anubis groups but act like hamadryas (try to guard females etc.)
+suggests strong genetic componenet to behaviour
+
+see Bergey et al - dopamine pathway is highly diverged in primate species that differ in social behaviour;
+shows dopamine pathway possibly v important.
+
+(can we look at genes and predict behaviour?)
+
+--------------------------------------------------------
+
+cosnervation
+
+e.g. giraffes ercently speciated from 2 to 4 sp? since far away ranges
+
+can now model conservation for eaach species better
+better define population size
+
+e.g. new orang species in sumatra, more closely related to bornean orangs than sumatran
+only about 800 in existence already crit endangered, top pritority, maybe get their forest protected better
+-----------------------------------------------------------------
+
+
+single locus vs genomic data
+
+????//
+-----------------------------------
+
+single locus and satistical power
+
+single locus studies gave wrong view that humans onlyhad dna from single african population, later showed wrong e.g. we have neanderthal
+-------------------------------------------
+
+shotgun genome sequencing
+
+chop dna, sequence frags, statistical methods to rebuild genome
+Celera managed to patent BRACA1 (breast cancer)
+---------------------------------------------------------
+
+whole genome seq
+
+many produce 50 - 100 bp, some 1000s of bp at a time. trade off between short and long reads e.g.
+short reads fewer errors ~1%, higher read lengths is 10%
+get around error by sequencing lots and errors wont match up
+--------------------------------------------
+
+De novo vs resequencing, de novo never seq before - much harder 
+re0seq - already sequenced before, much easier to seq human genome than new species (since we 
+know the order of genes and can use past genome map)
+de novo tales many more sequencings
+
+polymorphisms (informative)  
+
+missed a bit here??????????????????//
+
+--------------------------------------------------
+
+shitttttt??????????? missed here too
+
+something about restriction sites in sequencing
+
+---------------------------------------
+
+gene chips
+
+new populations may have new var that would be missed through this type
+------------------------------------
+
+rna-seq
+
+take all ran from tissue
+good to show expresision levels
+
+---------------------------------------------------------
+
+dna capture
+
+poor dna quality source
+
+use dna probes that hybridise with source dna to enrich sample
+
+e.g. maybe have mixed v little target dna and lots of rubbish e.g. bacterial dna, can pull out target dna 
+
+----------------------------------------
+
+some sources of dna give better quality e.g. blood, tissue, saliva, semen
+
+lots of dna, intactt, target species, difficult sampling
+
+e.g. primates often use faeces dna but has lots of dna from their food so not great
+-----------------------------------
+
+good sample may involve trapping 
+
+sampling can affect some species e.g. take male hamadryas baboon for sampling, loses 
+harem and social status
+entire social structure fucked
+---------------------------------------------------
+
+missed stuff but maybe not important
+----------------------------------------------------
+
+big difficulty is amount of data
+
+bioniformatics
+programming
+comp methods
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
