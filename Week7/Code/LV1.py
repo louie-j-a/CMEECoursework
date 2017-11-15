@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+
+
 """ The typical Lotka-Volterra Model simulated using scipy """
 
 import scipy as sc 
@@ -34,7 +37,7 @@ pops, infodict = integrate.odeint(dR_dt, z0, t, full_output=True)
 
 infodict['message']     # >>> 'Integration successful.'
 
-prey, predators = pops.T # What's this for?
+prey, predators = pops.T # What's this for? .T transposes arrays
 f1 = p.figure() #Open empty figure object
 p.plot(t, prey, 'g-', label='Resource density') # Plot
 p.plot(t, predators  , 'b-', label='Consumer density')
@@ -43,5 +46,5 @@ p.legend(loc='best')
 p.xlabel('Time')
 p.ylabel('Population')
 p.title('Consumer-Resource population dynamics')
-p.show()
-f1.savefig('prey_and_predators_1.pdf') #Save figure
+#p.show()
+f1.savefig('../Results/prey_and_predators_1.pdf') #Save figure

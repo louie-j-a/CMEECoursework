@@ -46,6 +46,7 @@ def my_square_loop(x):
 def my_square_lc(x):
 	out = [i ** 2 for i in x]
 	return out
+#!/usr/bin/env python
 	
 # %timeit my_squares_loop(my_list)
 # %timeit my_square_lc(my_list)

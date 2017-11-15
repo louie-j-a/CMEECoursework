@@ -16,3 +16,5 @@ Week4; Stats with sparrows week; stats in R; t-tests; degrees of freedom; linear
 
 
 Week5; QGIS; map projections; map making in python; converting map file formats; zonal stats; raster merging; 
+
+Week6; genomics and bioniformatics; sequencing technology, file types, data handling, genomic analyses 

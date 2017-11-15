@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-""" The typical Lotka-Volterra Model simulated using scipy """
+""" The Lotka-Volterra Model with prey density dependance simulated using scipy """
 
 __author__ = 'Louie Adams (la2417@ic.ac.uk)'
 __version__ = '0.0.1'
@@ -19,19 +19,26 @@ def dR_dt(pops, t=0):
     
     R = pops[0]
     C = pops[1]
-    dRdt = r*R - a*R*C 
+    K = 5
+    dRdt = r*R*(1 - (R/K)) - a*R*C 
     dydt = -z*C + e*a*R*C
     
     return sc.array([dRdt, dydt])
 
 # Define parameters:
-r = 1. # Resource growth rate
-a = 0.1 # Consumer search rate (determines consumption rate) 
-z = 1.5 # Consumer mortality rate
-e = 0.75 # Consumer production efficiency
-
+if len(sys.argv) == 5:
+	r = float(sys.argv[1]) # Resource growth rate
+	a = float(sys.argv[2]) # Consumer search rate (determines consumption rate) 
+	z = float(sys.argv[3]) # Consumer mortality rate
+	e = float(sys.argv[4]) # Consumer production efficiency
+else:
+	r = 1.3
+	a = 0.4
+	z = 0.3
+	e = 0.2
+	
 # Now define time -- integrate from 0 to 15, using 1000 points:
-t = sc.linspace(0, 15,  1000)
+t = sc.linspace(0, 30,  1000)
 
 x0 = 10
 y0 = 5 
@@ -47,8 +54,9 @@ p.plot(t, prey, 'g-', label='Resource density') # Plot
 p.plot(t, predators  , 'b-', label='Consumer density')
 p.grid()
 p.legend(loc='best')
+p.text(1,8, "r = %s, \na = %s \nz = %s \ne = %s \nK = 5" %(r, a, z, e))
 p.xlabel('Time')
 p.ylabel('Population')
 p.title('Consumer-Resource population dynamics')
 p.show()
-f1.savefig('prey_and_predators_1.pdf') #Save figure
+f1.savefig('../Results/prey_and_predators_2.pdf') #Save figure
