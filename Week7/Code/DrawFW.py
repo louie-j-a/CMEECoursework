@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 """
 	Plot a snapshot of a food web graph/network.
 	Needs: Adjacency list of who eats whom (consumer name/id in 1st

@@ -1,3 +1,5 @@
+#!/usr/bin/env RScript
+
 # Plots log(field metabolic rate) against log(body mass) for the Nagy et al 
 # 1999 dataset to a file fmr.pdf.
 # Writes the list of species names to species.csv

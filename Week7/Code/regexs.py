@@ -1,3 +1,12 @@
+#!/usr/bin/env python
+
+"""
+	Various regular expression searches
+"""
+__author__ = "Louie Adams (la2417@ic.ac.uk)"
+__version__ = "0.0.1"
+__date__ = "Nov 2017"
+
 import re
 
 my_string = "a given string"
@@ -62,6 +71,7 @@ match.group() # "once upon a "
 match = re.search(r"^\w*.*?\s", "once upon a time")
 match.group() # "once "
 
+
 ## To further illustrate greediness, let's try matching an HTML tag:
 match = re.search(r'<.+>', 'This is a <EM>first</EM> test')
 match.group() # '<EM>first</EM>'
@@ -79,6 +89,6 @@ match = re.search(r'\d*\.?\d*','1432+60.22i')
 match.group() # '1432'
 match = re.search(r'[AGTC]+', 'the sequence ATTCGT')
 match.group() # 'ATTCGT'
-re.search(r'\s+[A-Z]{1}\w+\s\w+', 'The bird-shit frog''s name is Theloderma asper').←-
-group() # ' Theloderma asper'
+re.search(r'\s+[A-Z]{1}\w+\s\w+', 'The bird-shit frog''s name is Theloderma asper').group()
+ # ' Theloderma asper'
 ## NOTE THAT I DIRECTLY RETURNED THE RESULT BY APPENDING .group()

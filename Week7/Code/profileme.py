@@ -1,5 +1,11 @@
 #!/usr/bin/env python
 
+"""
+	Provides useless functions to be profiled (%run -p)
+"""
+__author__ = "Louie Adams (la2417@ic.ac.uk)"
+__version__ = "0.0.1"
+__date__ = "Nov 2017"
 
 def a_useless_function(x) :
 	y = 0

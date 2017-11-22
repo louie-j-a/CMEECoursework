@@ -1,3 +1,13 @@
+#!/usr/bin/env python
+
+"""
+	Provides useless functions to be timed using %timeit()
+"""
+__author__ = "Louie Adams (la2417@ic.ac.uk)"
+__version__ = "0.0.1"
+__date__ = "Nov 2017"
+
+
 ######################################
 # range vs. xrange.
 ######################################

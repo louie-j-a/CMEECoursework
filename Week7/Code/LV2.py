@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-""" The Lotka-Volterra Model with prey density dependance simulated using scipy """
+""" The Lotka-Volterra Model with prey density dependence simulated using scipy """
 
 __author__ = 'Louie Adams (la2417@ic.ac.uk)'
 __version__ = '0.0.1'
@@ -19,19 +19,19 @@ def dR_dt(pops, t=0):
     
     R = pops[0]
     C = pops[1]
-    K = 5
+    K = 5   # Carrying capacity, K, added to equation
     dRdt = r*R*(1 - (R/K)) - a*R*C 
     dydt = -z*C + e*a*R*C
     
     return sc.array([dRdt, dydt])
 
 # Define parameters:
-if len(sys.argv) == 5:
+if len(sys.argv) == 5: # If correct number of arguments entered, take users arguments
 	r = float(sys.argv[1]) # Resource growth rate
 	a = float(sys.argv[2]) # Consumer search rate (determines consumption rate) 
 	z = float(sys.argv[3]) # Consumer mortality rate
 	e = float(sys.argv[4]) # Consumer production efficiency
-else:
+else: # Default arguments if user eters inccorect arguments
 	r = 1.3
 	a = 0.4
 	z = 0.3
