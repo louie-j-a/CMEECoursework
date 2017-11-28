@@ -1,0 +1,396 @@
+Starting weekly assessment for Louie, Week6
+
+Current Marks = 100
+
+Note that: 
+(1) Major sections begin with a double "====" line 
+(2) Subsections begin with a single "====" line 
+(3) Code output or text file content are printed within single "*****" lines 
+
+======================================================================
+======================================================================
+Your Git repo size this week is about 201.45 MiB on disk 
+
+PART 1: Checking project workflow...
+
+Found the following directories in parent directory: Week3, Week5, Week1, Week7, Week4, Week2, .git, Assessment, Week6
+
+Found the following files in parent directory: .gitignore, README.txt
+
+Checking for key files in parent directory...
+
+Found .gitignore in parent directory, great! 
+
+Printing contents of .gitignore:
+**********************************************************************
+*~ 
+*.tmp
+*.pyc
+*.Rhistory
+**********************************************************************
+
+Found README in parent directory, named: README.txt
+
+Printing contents of README.txt:
+**********************************************************************
+My CMEE 2017-18 Coursework Repository
+
+Week 1; work done on; introduction to UNIX - Practical 1 is in this section, can be found in Week1/Code/UnixPrac1.txt; Shell scripting - Practical 2 here, csvtospace.sh is from this practical; version control using github; the use of LaTeX for writing scientific papers 
+
+
+Week 2; Intro to python - variables; data types; reading in /writing out files; control statements, loops and list comprehensions; debugging; 3 practicals in sections 15.10.2, 15.12.1 and 15.13.4
+Some advanced python started this week but will pick up in week 6
+
+
+Week3; Intro to R - variables; data types; importing/exporting data; control statements. 
+	Advanced topics in R - vectorisation (*apply); more control flow; generating random numbers; 		debugging; 
+	Data Exploration - basic plotting; ggplot; data wrangling
+
+
+Week4; Stats with sparrows week; stats in R; t-tests; degrees of freedom; linear models; 
+
+
+Week5; QGIS; map projections; map making in python; converting map file formats; zonal stats; raster merging; 
+
+Week6; genomics and bioniformatics; sequencing technology, file types, data handling, genomic analyses 
+
+
+Week7; Numerical computing, scipy; profiling; networks with networkx; Regex; workflows with subprocesses module; 
+**********************************************************************
+
+======================================================================
+Looking for the weekly directories...
+
+Found 7 weekly directories: Week1, Week2, Week3, Week4, Week5, Week6, Week7
+
+The Week6 directory will be assessed 
+
+======================================================================
+======================================================================
+PART 2: Checking weekly code and workflow...
+
+======================================================================
+Assessing WEEK6...
+
+Found the following directories: Data, Sandbox, Code, Results
+
+Found the following files: .gitignore, README.txt
+
+Checking for readme file in weekly directory...
+
+Found README in parent directory, named: README.txt
+
+Printing contents of README.txt:
+**********************************************************************
+.
+├── Code
+│   ├── Moving_F.R - creates moving f graph from SNP data
+│   ├── Ob_v_Ex_het.R - creates obs vs exp heterozygosity graph from SNP data
+│   └── PracticalDay2.R - various excersises from 2nd day of genomics week
+├── Data
+│   ├── H938_chr15.geno - genomic data, SNPs from sample population
+│   ├── ME_Dataset1.bed - genomic data, SNPs from sample population
+│   ├── ME_Dataset1.bim - genomic data, SNPs from sample population
+│   ├── ME_Dataset1.fam - genomic data, SNPs from sample population
+│   ├── ME_Sample_Localities.gif.pdf - map of sampling sites
+├── README.txt
+├── Results
+│   └── README.txt
+└── Sandbox
+    ├── 1st lecture notes
+    ├── 2nd lecture notes
+    ├── 3rd lecture
+    ├── 4th lecture
+    ├── 5th lecture
+    ├── 6th lecture
+    └── phylogenomics
+**********************************************************************
+
+Found 3 code files: Moving_F.R, Ob_v_Ex_het.R, PracticalDay2.R
+
+======================================================================
+Testing script/code files...
+
+======================================================================
+Inspecting script file Moving_F.R...
+
+File contents are:
+**********************************************************************
+#!/usr/bin/env RScript
+rm(list=ls())
+
+cargs <- commandArgs(T)
+if (length(cargs) < 1){
+  infile <- "../Data/H938_chr15.geno"
+}
+# stop("not enough arguments")
+if (length(cargs) > 1) stop("too many arguments, please note that no output file name is required")
+
+infile <- cargs[1] # input data file name
+#outfile <- cargs[2] # output file name
+
+library(dplyr)
+library(ggplot2)
+library(reshape2)
+
+
+
+FunctionPEOH <- function(g) {
+  g <- read.table(file = g, header = T)
+  g <- mutate(g, nObs = nA1A1 + nA1A2 + nA2A2) 
+  g <- mutate(g, p11 = nA1A1/nObs, p12 = nA1A2/nObs, p22 = nA2A2/nObs)
+  g <- mutate(g, p1 = p11 + 0.5*p12, p2 = p22 + 0.5*p12)
+  head(g)
+  g <- mutate(g, X2 = (nA1A1-nObs*p1^2)^2 /(nObs*p1^2) + (nA1A2-nObs*2*p1*p2)^2 / (nObs*2*p1*p2) + (nA2A2-nObs*p2^2)^2 / (nObs*p2^2)) 
+  g <- mutate(g, pval = 1 - pchisq(X2,1))
+  g <- mutate(g, F = (2*p1*(1-p1)-p12) / (2*p1*(1-p1)))
+  return(g)
+}
+
+movingavg <- function(x, n=5) {stats::filter(x, rep(1/n,n), sides = 2)}
+
+ReadInputFile <- function(genofile) {
+  h <- FunctionPEOH(genofile)
+
+  #THEplot <- plot(movingavg(h$F), xlab="SNP number")
+  title <- gsub("/|../Data/|.geno","",genofile) #Using gsub to remove parts of name.
+    newtitle <- paste0("../Results/",title,"_MovAVG.pdf")
+  pdf(newtitle,11.7,8.3)
+  plot(movingavg(h$F), xlab="SNP number")
+  dev.off()
+}
+
+#ReadInputFile("../Data/H938_chr15.geno")
+ReadInputFile(infile)
+
+
+# g <- read.table(file = infile, header = T) #reading in data as a dataframe in R.
+#g <- mutate(g, nObs = nA1A1 + nA1A2 + nA2A2) #Adding a column to g, that adds up the number of observations of the three genotypes to get the number of observations. New column is called nObs.
+# g <- mutate(g, p11 = nA1A1/nObs, p12 = nA1A2/nObs, p22 = nA2A2/nObs)
+# 
+# #Compute allele frequencies from genotype frequencies
+# g <- mutate(g, p1 = p11 + 0.5*p12, p2 = p22 + 0.5*p12)
+# head(g)
+# 
+# #Testing Hardy-Weinberg
+# g <- mutate(g, X2 = (nA1A1-nObs*p1^2)^2 /(nObs*p1^2) + (nA1A2-nObs*2*p1*p2)^2 / (nObs*2*p1*p2) + (nA2A2-nObs*p2^2)^2 / (nObs*p2^2)) 
+# 
+# g <- mutate(g, pval = 1 - pchisq(X2,1))
+# 
+# #Plot to see expected vs observed heterozygosity
+# qplot(2*p1*(1-p1), p12, data = g) + geom_abline(intercept = 0, slope=1, color="red", size=1.5)
+
+
+
+**********************************************************************
+
+Testing Moving_F.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+**********************************************************************
+
+Encountered error:
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Error in file(file, "rt") : cannot open the connection
+Calls: ReadInputFile -> FunctionPEOH -> read.table -> file
+In addition: Warning message:
+In file(file, "rt") : cannot open file 'NA': No such file or directory
+Execution halted
+
+======================================================================
+Inspecting script file Ob_v_Ex_het.R...
+
+File contents are:
+**********************************************************************
+#!/usr/bin/env RScript
+rm(list=ls())
+
+cargs <- commandArgs(T)
+if (length(cargs) < 1) stop("not enough arguments")
+if (length(cargs) > 1) stop("too many arguments, please note that no output file name required")
+
+infile <- cargs[1] # input data file name
+#outfile <- cargs[2] # output file name
+
+library(dplyr)
+library(ggplot2)
+library(reshape2)
+
+FunctionPEOH <- function(g) {
+  g <- read.table(file = g, header = T)
+  g <- mutate(g, nObs = nA1A1 + nA1A2 + nA2A2) 
+  g <- mutate(g, p11 = nA1A1/nObs, p12 = nA1A2/nObs, p22 = nA2A2/nObs)
+  g <- mutate(g, p1 = p11 + 0.5*p12, p2 = p22 + 0.5*p12)
+  head(g)
+  g <- mutate(g, X2 = (nA1A1-nObs*p1^2)^2 /(nObs*p1^2) + (nA1A2-nObs*2*p1*p2)^2 / (nObs*2*p1*p2) + (nA2A2-nObs*p2^2)^2 / (nObs*p2^2)) 
+  g <- mutate(g, pval = 1 - pchisq(X2,1))
+  return(g)
+}
+
+ReadInputFile <- function(genofile) {
+  h <- FunctionPEOH(genofile)
+  THEplot <- qplot(2*p1*(1-p1), p12, data = h) + geom_abline(intercept = 0, slope=1, color="red", size=1.5)
+  title <- gsub("/|../Data/|.geno","",genofile) #Using gsub to remove parts of name.
+  newtitle <- paste0("../Results/",title,"_ExpVSObsHet.pdf")
+  pdf(newtitle,11.7,8.3)
+  print(THEplot)
+  dev.off()
+}
+
+#ReadInputFile("../Data/H938_chr15.geno")
+ReadInputFile(infile)
+
+
+# g <- read.table(file = infile, header = T) #reading in data as a dataframe in R.
+#g <- mutate(g, nObs = nA1A1 + nA1A2 + nA2A2) #Adding a column to g, that adds up the number of observations of the three genotypes to get the number of observations. New column is called nObs.
+# g <- mutate(g, p11 = nA1A1/nObs, p12 = nA1A2/nObs, p22 = nA2A2/nObs)
+# 
+# #Compute allele frequencies from genotype frequencies
+# g <- mutate(g, p1 = p11 + 0.5*p12, p2 = p22 + 0.5*p12)
+# head(g)
+# 
+# #Testing Hardy-Weinberg
+# g <- mutate(g, X2 = (nA1A1-nObs*p1^2)^2 /(nObs*p1^2) + (nA1A2-nObs*2*p1*p2)^2 / (nObs*2*p1*p2) + (nA2A2-nObs*p2^2)^2 / (nObs*p2^2)) 
+# 
+# g <- mutate(g, pval = 1 - pchisq(X2,1))
+# 
+# #Plot to see expected vs observed heterozygosity
+# qplot(2*p1*(1-p1), p12, data = g) + geom_abline(intercept = 0, slope=1, color="red", size=1.5)
+
+
+
+**********************************************************************
+
+Testing Ob_v_Ex_het.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+**********************************************************************
+
+Encountered error:
+Error: not enough arguments
+Execution halted
+
+======================================================================
+Inspecting script file PracticalDay2.R...
+
+File contents are:
+**********************************************************************
+#!/usr/bin/env RScript
+
+library(dplyr)
+library(ggplot2)
+library(reshape2)
+
+g <- read.table(file = "../Data/H938_chr15.geno", header = T)
+head(g)
+dim(g) #shows that there are 19560 SNPs in the file
+
+#calculate number of counts for each SNP and add into new column
+g <- mutate(g, nObs = nA1A1 + nA1A2 + nA2A2)
+head(g)
+
+qplot(nObs, data = g)#can see from graph that most SNPs have complete data
+range(g$nObs)#lowest count is 887, below the desired rate of 98.5%
+
+#Compute genotype frequencies
+g <- mutate(g, p11 = nA1A1/nObs, p12 = nA1A2/nObs, p22 = nA2A2/nObs)
+
+#compute allele frequencies from genotype frequencies
+g <- mutate(g, p1 = p11 + 0.5*p12, p2 = p22 + 0.5*p12)
+head(g)
+
+qplot(p1, p2, data=g) # freq A2 vs A1; p2 = 1 - p1
+
+gTidy <- select(g, c(p1, p11, p12, p22)) %>%
+  melt(id = "p1", value.name = "Genotype.Proportion")
+head(gTidy)
+dim(gTidy)
+
+ggplot(gTidy) + geom_point(aes(x = p1, y = Genotype.Proportion,
+                               color = variable, shape = variable)) +
+  stat_function(fun = function(p) p^2, geom = "line",
+                colour = "red", size = 2.5) + stat_function(fun = function(p) 2*p*(1-p), geom = "line", colour = "green", size = 2.5) +
+  stat_function(fun = function(p) (1-p)^2, geom = "line",
+                colour = "blue", size = 2.5)
+
+#Testing H-W
+
+g <- mutate(g, x2 = (nA1A1 - nObs*p1^2)^2 /(nObs*p1^2) +
+                       (nA1A2 - nObs*2*p1*p2)^2 / (nObs*2*p1*p2) + (nA2A2 - nObs*p2^2)^2 / (nObs*p2^2))
+
+g <- mutate(g, pval = 1-pchisq(x2, 1))
+
+head(g$pval)
+dim(g)
+
+sum(g$pval < 0.05, na.rm = T)
+
+qplot(pval, data = g)
+
+**********************************************************************
+
+Testing PracticalDay2.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+  CHR        SNP A1 A2 nA1A1 nA1A2 nA2A2
+1  15 rs12905389  A  G    52   310   572
+2  15  rs6599770  A  C    70   323   544
+3  15  rs7170864  A  G   142   417   379
+4  15 rs12440100  A  G    57   274   607
+5  15  rs4932079  G  T    71   337   530
+6  15  rs2665033  G  T     0   144   772
+[1] 19560     7
+  CHR        SNP A1 A2 nA1A1 nA1A2 nA2A2 nObs
+1  15 rs12905389  A  G    52   310   572  934
+2  15  rs6599770  A  C    70   323   544  937
+3  15  rs7170864  A  G   142   417   379  938
+4  15 rs124401
+**********************************************************************
+
+Encountered error:
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+
+======================================================================
+======================================================================
+Finished running scripts
+
+Ran into 3 errors
+
+======================================================================
+======================================================================
+
+FINISHED WEEKLY ASSESSMENT
+
+Current Marks for the Week = 100
+
+NOTE THAT THESE ARE NOT THE FINAL MARKS FOR THE WEEK, BUT AN UPPER BOUND ON THE MARKS!
