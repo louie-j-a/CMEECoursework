@@ -21,3 +21,7 @@ Week6; genomics and bioniformatics; sequencing technology, file types, data hand
 
 
 Week7; Numerical computing, scipy; profiling; networks with networkx; Regex; workflows with subprocesses module; 
+
+Week8; miniproject
+
+Week9; HPC and fractals
