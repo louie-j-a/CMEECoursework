@@ -489,6 +489,62 @@ challenge_D <- function(J = 500, v = 0.1){ # runs coalesence simulation for give
   return(abundances) # returns abundances of community
 }
 
+run_D <- function(){ # runs 25 coalesence simulations using challenge_D(), times the process and draws graphs of mean octaves 
+  ptm <- proc.time()[3] # starts timer
+
+  oct500list <- list() # creates empty lists to store octaves
+  oct1000list <- list()
+  oct2500list <- list()
+  oct5000list <- list()
+
+  for (i in 1:25){ # runs 25 simulations for J = 500
+    oct500list[[i]] <- octaves(sort(challenge_D(500, 0.003369), decreasing = T))
+  }
+  for (i in 1:25){
+    oct1000list[[i]] <- octaves(sort(challenge_D(1000, 0.003369), decreasing = T))
+  }
+    for (i in 1:25){
+    oct2500list[[i]] <- octaves(sort(challenge_D(2500, 0.003369), decreasing = T))
+  }
+    for (i in 1:25){
+    oct5000list[[i]] <- octaves(sort(challenge_D(5000, 0.003369), decreasing = T))
+  }
+
+  plotOct500 <- oct500list[[i]] # creates vector to plot
+  for (i in 1:(length(oct500list)-1)){
+    plotOct500 <- sum_vect(plotOct500, oct500list[[i + 1]])
+  }
+
+    plotOct1000 <- oct1000list[[i]]
+  for (i in 1:(length(oct500list)-1)){
+    plotOct1000 <- sum_vect(plotOct1000, oct1000list[[i + 1]])
+  }
+
+    plotOct2500 <- oct2500list[[i]]
+  for (i in 1:(length(oct2500list)-1)){
+    plotOct2500 <- sum_vect(plotOct2500, oct2500list[[i + 1]])
+  }
+
+    plotOct5000 <- oct5000list[[i]]
+  for (i in 1:(length(oct500list)-1)){
+    plotOct5000 <- sum_vect(plotOct5000, oct5000list[[i + 1]])
+  }
+
+  plotOct500 <- plotOct500/length(oct500list) # finds mean octaves
+  plotOct1000 <- plotOct1000/length(oct1000list)
+  plotOct2500 <- plotOct2500/length(oct2500list)
+  plotOct5000 <- plotOct5000/length(oct5000list)
+
+  png(file = "chalDoctaves.png")
+  par(mfrow = c(2,2), las = 2)
+  barplot(plotOct500, main = "size = 500", ylab = "Number of species", xlab = "Octave Classes", names.arg = 2^(0:(length(plotOct500)-1)))
+  barplot(plotOct1000, main = "size = 1000", ylab = "Number of species", xlab = "Octave Classes", names.arg = 2^(0:(length(plotOct1000)-1)))
+  barplot(plotOct2500, main = "size = 2500", ylab = "Number of species", xlab = "Octave Classes", names.arg = 2^(0:(length(plotOct2500)-1)))
+  barplot(plotOct5000, main = "size = 5000", ylab = "Number of species", xlab = "Octave Classes", names.arg = 2^(0:(length(plotOct5000)-1)))
+  dev.off()
+
+  print(proc.time()[3] - ptm) # prints time taken for function to run
+}
 
 
 ###################################################################################
