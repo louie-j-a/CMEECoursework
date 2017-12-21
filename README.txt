@@ -25,3 +25,5 @@ Week7; Numerical computing, scipy; profiling; networks with networkx; Regex; wor
 Week8; miniproject
 
 Week9; HPC and fractals
+
+Week10; C
