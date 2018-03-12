@@ -1,0 +1,259 @@
+\documentclass[a4paper, 11pt]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[tableposition=top]{caption}
+\usepackage[english]{babel}
+\usepackage{blindtext}
+\usepackage{tabularx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{ltxtable} 
+\usepackage{setspace} % to get double spacing
+%% Sets page size and margins
+\usepackage[a4paper,top=3cm,bottom=2cm,left=2.5cm,right=2.5cm,marginparwidth=1.75cm]{geometry}
+%% Useful packages
+\usepackage{amsmath} % extra maths symbol
+\usepackage{amssymb} % extra mathematical symbols
+\usepackage{graphicx} % allows input of images
+%\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[colorlinks=true, allcolors=black]{hyperref}
+%\usepackage{rotating}
+%\usepackage{longtable}
+%\usepackage{lipsum} % just for dummy text- not needed for a longtable
+\usepackage{siunitx} % for degrees Celsius symbol
+\usepackage{lineno} % for line numbers
+\usepackage[parfill]{parskip}
+\graphicspath{{Results/}{../Results/}} % sets pathway for figures 
+% bibliography
+\usepackage{natbib} %for referencing
+\begin{document}
+\begin{titlepage}
+
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+\center % Center everything on the page
+ 
+%----------------------------------------------------------------------------------------
+%	HEADING SECTIONS
+%----------------------------------------------------------------------------------------
+
+\textsc{\LARGE Imperial College London}\\[1.5cm] % Name of your university/college
+\textsc{\Large Department of Life Sciences}\\[0.5cm] % Major heading such as course name
+\textsc{\large Imperial College London, London SW7 2AZ}\\[0.5cm] % Minor heading such as course title
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\HRule \\[0.6cm]
+\doublespacing
+{ \huge \bfseries Latitude as a Predictor of Model Fit to Thermal Performance Data}\\[0.2cm] % Title of your document
+\HRule \\[1.5cm]
+ 
+%----------------------------------------------------------------------------------------
+%	AUTHOR SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{minipage}{0.4\textwidth}
+\large
+\emph{Author:} Louie Adams \newline
+\emph{CID:} 00639189 \newline
+\emph{Word Count:} 2408
+\end{minipage}
+~
+
+\vfill % Fill the rest of the page with whitespace
+%\includegraphics[width=7cm]{logo.pdf} % imperial logo 
+\end{titlepage}
+
+\doublespacing
+% line numbers
+\begin{linenumbers}
+
+\tableofcontents
+\newpage
+
+
+\section{Introduction}
+
+Broadly speaking, there are two ways in which biological processes may be described, using either phenomenological or mechanistic models; the former seeks to explain observed patterns in data by defining functions or distributions that match these patterns - a common example of this being a linear regression - while the latter attempts to explain the causes of the observed patterns, through the formulation of equations based on  fundamental physiological principles. The type of model chosen will depend on the data available and what is sought from the model, if there is little knowledge on what may be causing a pattern, and the aim is to be able to make straightforward predictions based from observed data, then a phenomenological model may prove more useful; if there is priori knowledge on what is driving a biological process which can be explained from a fundamental level, then a mechanistic model is likely more suitable and may allow for extrapolation from observed data into a wider variety of new scenarios.
+ 
+This project explores the differing suitability of phenomenological models versus mechanistic models in describing an empirical dataset.  Three mechanistic models, as well as one phenomenological model, will be compared against one another in their ability to explain observed patterns in thermal performance data. The first mechanistic model to be tested here is known as the Sharpe-Schoolfield model, which describes how a biological trait (or reaction) is controlled by temperature and enzyme kinetics, the equation is as follows:
+
+\begin{equation}
+	B = \frac{B_{0}e^{\frac{-E}{k}(\frac{1}{T} - \frac{1}{283.15})}}{1 + e^{\frac{E_{l}}{k}(\frac{1}{T_{l}} - \frac{1}{T})} + e^{\frac{E_{h}}{k}(\frac{1}{T_{h}} - \frac{1}{T})}}
+    \label{eqt:ShSc}
+\end{equation}
+
+(B$_{\text{0}}$)  is the value of the trait, at a given reference temperature (T$_{\text{ref}}$),  taken to be 283.15K (\SI{10}{\celsius}) (Figure \ref{fig:eg TPC}). E (eV) is the activation energy of the enzyme driving the reaction in question. (E$_{\text{h}}$) (eV) is the high temperature deactivation energy of the enzyme, that is the energy required to  denature  50\% of the enzyme, the temperature at which this occurs is denoted as (T$_{\text{h}}$) (Figure \ref{fig:eg TPC}). At the other end of the scale is the low temperature deactivation energy (E$_{\text{l}}$) (eV), where 50\% of the enzyme will be deactivated due to a lack of energy in the system, the temperature at this point is denoted as (T$_{\text{l}}$) (Figure \ref{fig:eg TPC}) \citep{schoolfield}.  
+
+The Sharpe-Schoolfield model can be simplified into two separate equations;  the denominator of the equation increases as more enzyme is deactivated due to high/low temperatures, decreasing  the proportion of the rate-controlling enzyme remaining active.  When low temperature deactivation is weak, or when lower temperatures have not been measured, the second term in the denominator becomes insignificant and the following formulation may be more suitable:
+
+\begin{equation}
+	B = \frac{B_{0}e^{\frac{-E}{k}(\frac{1}{T} - \frac{1}{283.15})}}{1 + e^{\frac{E_{h}}{k}(\frac{1}{T_{h}} - \frac{1}{T})}}
+    \label{eqt:ShScHigh}
+\end{equation}
+
+Alternatively, when high temperature deactivation is weak or higher temperatures have not been measured, the third term in the denominator becomes insignificant and the and the following formulation may be more suitable:
+
+\begin{equation}
+	B = \frac{B_{0}e^{\frac{-E}{k}(\frac{1}{T} - \frac{1}{283.15})}}{1 + e^{\frac{E_{l}}{k}(\frac{1}{T_{l}} - \frac{1}{T})}}
+    \label{eqt:ShScCold}
+\end{equation}
+The phenomenological model is described by a cubic function, with temperature predicting the trait value and the coefficients being inferred from observed correlations between temperature and the trait value, the function is as follows: 
+\begin{equation}
+	B = B_{0} + B_{1}T + B_{2}T^{2} + B_{3}T^{3}
+    \label{eqt:cubic} 
+\end{equation}It should be noted that B$\textsubscript0$ in the cubic equation is not the same parameter as B$\textsubscript0$ in the Sharpe-Schoolfield model and is completely unrelated. 
+
+The thermal response data used in this project was a result of experiments performed on a variety of species spanning many higher taxonomic ranks, whose natural ranges exist over a range of latitudes. An additional hypothesis was tested, that the latitude at which a species would naturally be found would predict which version of the Sharpe-Schoolfield model would best describe the thermal response curve associated with that species.  Due to temperatures at latitudes closer to 0$^{\circ}$ generally higher than latitudes further from 0$^{\circ}$, it might be expected that the high temperature model would best explain thermal response data for species from these naturally found in these regions, as they should be operating closer to the upper temperature limits of their enzymes, i.e. closer to (T$_{\text{h}}$). The reverse could be true for species living at higher latitudes, where they are operating at temperature ranges closer to (T$_{\text{l}}$), here, the low temperature Sharpe-Schoolfield model may be better suited to describe the thermal response data. In between these two extremes, the full Sharpe-Schoolfield  model may best explain the thermal responses of these species.   
+
+Phenomenological models may provide more precise, short term predictions however mechanistic models allow for much greater extrapolation from current models, allowing us to explain much more than our immediate empirical data  \citep{modelMisuse}. The fundamental importance of metabolism  in determining larger scale ecological processes such as population growth rates, biomass production and even rates of evolution is leading to the development of a metabolic theory of ecology \citep{metabTheory}. With such great potential held by mechanistic models, it is important to understand how and when they are superior to phenomenological models, making comparisons such as the ones to be carried out in this project very important. Furthermore, the link between latitude, temperature, metabolism and diversity outlined in \cite{metabTheory} provides a competing hypothesis to explain the global trends seen in biodiversity across latitudinal gradients.
+
+
+\section{Methods}
+
+\subsection{Thermal Response Data}
+
+Data was acquired from the Global Biotraits Database \citep{biotraitsDB}, a collation of the results of thousands of experiments testing the thermal responses of various biological traits, covering a wide range of species across many higher taxonomic ranks. As is often the case with such large data sets, not all data is usable, for example not all experimenters will have recorded exactly the same categories of data, leading to some important values being missing from the data set; as well as this there is likely to be data entry errors and other problems. Therefore, data was cleaned in R \citep{R}, before models were fitted. After cleaning, their remained data from 1927 separate experiments.
+
+\subsection{Model Fitting}
+
+All models were fitted in Python, for the three Sharpe-Schoolfield models, this was done using the \textbf{minimize} function of the \textbf{LMFIT} package \citep{LMFIT}, and for the cubic model, the \textbf{polyfit} function from the \textbf{numpy} package \citep{numpy} was used. \textbf{LMFIT} uses the non-linear least squares method (via the Levenberg-Marquardt algorithm) to reduce the residuals and thus fit the best curve to the observed data. For ease of use, the Sharpe-Schoolfield models were log transformed prior to entry into the \textbf{minimize} function. 
+
+For the algorithm to work, all parameters of the model must first be estimated from the observed data and then be past to the \textbf{minimize} function, providing it with a starting point from which to estimate the true parameter values. This initial parameter estimation was done using R. (B$_{\text{0}}$) was taken as the observed trait value at the experimental temperature closest to 283.15K. (T$_{\text{h}}$) and (T$_{\text{l}}$) can be estimated by finding the temperature at which the observed trait value is half of its maximum (Figure \ref{fig:eg TPC}); at these temperatures, half of the enzyme is inactive, therefore, the rate of reaction is halved. E, (E$_{\text{h}}$), and (E$_{\text{l}}$) can be estimated by plotting the log of the trait value against the inverse of the product of the temperatures and the Boltzmann constant (k, in eV.K\textsuperscript{-1}) (Figure \ref{fig:eg log TPC}); on this graph, (E$_{\text{h}}$) is the gradient of the initial portion of the curve (with a high positive gradient) (Figure \ref{fig:eg log TPC}); E is the absolute value of the gradient of the curve after the peak (where the curve is falling most rapidly); and (E$_{\text{l}}$) is the absolute value of the gradient of the final portion of the curve (where the curve begins to level off) (Figure \ref{fig:eg log TPC}).  
+
+\subsection{Model Selection}
+Once all models had been fitted, Akaike Information Criterion (AIC) scores were calculated to compare the relative fit of each model to the data, one model was said to be better than another if its AIC score was less than or equal to 2 below that of another model \cite{AIC>=2}; in cases where the AIC scores of two models did not differ by 2 or more, the model with fewer parameters was chosen over the other, due to it being more parsimonious. 
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{TPCcurve.pdf}
+\caption{\label{fig:eg TPC} Typical thermal performance curve generated with data from the Global Biotraits Database. (T$_{\text{h}}$) and (T$_{\text{l}}$) are the high and low inactivation temperatures, respectively. (E$_{\text{h}}$) and (E$_{\text{l}}$) are the high and low inactivation energies, respectively. B$\textsubscript{max}$ is the maximum trait value while B$\textsubscript{max/2}$ is half of that. B$\textsubscript{0}$ is the trait value at a reference temperature T$\textsubscript{ref}$} 
+\end{figure}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{logTPCcurve.pdf}
+\caption{\label{fig:eg log TPC} Graph of logged trait response vs 1/kt. Used to visualise E, E\textsuperscript{l} and E\textsuperscript{h}.}
+\end{figure}
+
+
+
+The data was then filtered to include just those experiments for which the latitude of the species range had been recorded and was grouped by which of the three versions of the Sharpe-Schoolfield model had been selected to best describe the data (Figure \ref{fig:bxplt1}). An ANOVA was performed in order to test for latitudinal differences amongst these groups.  After this, the data was filtered once more, limiting the data set to those experiments where the species range was in the tropics (defined as $\pm$23.5$^{\circ}$ of latitude north/south of the equator), so to reduce any possible effects of environmental temperature variation due to seasonality (Figure \ref{fig:bxplt2}). Another ANOVA was then carried out to test for differences in model selection occurring at different latitudes and a post hoc Tukey's test then used to identify which groups differed in latitude.
+
+\subsection{Computing Languages}
+
+R (version 3.2.3 (2015-12-10)) was used for data cleaning and parameter estimation due to its base functions for data manipulation and calculations. All graphs were plotted in R, due to the advanced plotting functions available in the \textbf{ggplot2} package \citep{ggplot}. 
+
+Python 2.7.12 (default, Nov 20 2017, 18:23:56) was used for fitting the various models to the data, due to its efficient handling of large datasets.
+
+Bash was used to tie the work-flow together and compile the LaTeX document into a PDF.
+
+\section{Results}
+
+Of the data from 1927 sets of experiments, the full Sharpe-Schoolfield model was able to be fitted to 81.37\% of sets, while both of the reduced Sharpe-Schoolfield models and the cubic model were fitted to all sets. The cubic function (Figure \ref{fig:cubic}) always had an AIC score at least 2 lower than that of all other models tested. When the three Sharpe-Schoolfield models were compared against one another (without the cubic function considered) (Figure \ref{fig:school}), the full model best described the data for 81.83\% of sets, the high temperature model for 14.27\% of sets and the low temperature model for 3.89\% of sets.
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{schoolfieldGraphs.pdf}
+\caption{\label{fig:school} Graph demonstrating how each type of Sharpe-Schoolfield fits data from a single experiment. The green line shows the fitted values predicted by the full Sharpe-Schoolfield model, while the red and blue lines, show the fitted values predicted by the high and low temperature Sharpe-Schoolfield models, respectively. All models here have been log transformed.}
+\end{figure}
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{cubicGraphs.pdf}
+\caption{\label{fig:cubic} Graph showing how the cubic model fits data from a single experiment.}
+\end{figure}
+
+The results of the two ANOVAs are summarised in tables 1 and 2. The ANOVA on the data containing the full range of latitudes failed to find any significant effect of latitude on model selection (Table \ref{anova}). When the data was restricted to tropical latitudes, the ANOVA did find a significant difference between latitudes among groups (Table \ref{anova2}), although a post hoc Tukey's test failed to find a significant difference between groups (Table \ref{TukeyHSD}). 
+
+\begin{table}[ht]
+\centering
+\caption{Output of ANOVA comparing latitudes of each group of data. Groups are defined by which type of Sharpe-Schoolfield model best described the data, i.e. full or partial Sharpe-Schoolfield models.}
+\vspace{0.2cm}
+\label{anova}
+\begin{tabular}{llllll}
+\hline
+\multicolumn{6}{l}{Formula: Latitude $\sim$ Model}                                          \\ \hline
+          & \textbf{Df} & \textbf{Sum Sq} & \textbf{Mean Sq} & \textbf{F Value} & \textbf{Pr(>F)} \\
+Model     & 2           & 517             & 258.6            & 1.308            & 0.271           \\
+Residuals & 1291        & 255169          & 197.7            &                  &                 \\
+          &             &                 &                  &                  &                 \\  
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{latitudeBxPlt.pdf}
+\caption{\label{fig:bxplt1} Boxplot showing the relationship between latitude and which Sharpe-Schoolfield model best described the data.}
+\end{figure}
+
+
+\begin{table}[ht]
+\centering
+\caption{Output of ANOVA comparing latitudes of each group, when data was restricted to latitudes within the tropics ($\pm$23.5$^{\circ}$ latitude away from the equator). Groups are defined by which type of Sharpe-Schoolfield model best describes the data, i.e. full or partial Sharpe-Schoolfield models.}
+\vspace{0.2cm}
+\label{anova2}
+\begin{tabular}{llllll}
+\hline
+\multicolumn{6}{l}{Formula: Latitude $\sim$ Model}                                          \\ \hline
+          & \textbf{Df} & \textbf{Sum Sq} & \textbf{Mean Sq} & \textbf{F Value} & \textbf{Pr(>F)} \\
+Model     & 2           & 391             & 195.40           & 3.625            & 0.031           \\
+Residuals & 83          & 4474            & 0.074           & 53.91            &                 \\
+          &             &                 &                  &                  &                 \\
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{latitudeBxPlt2.pdf}
+\caption{\label{fig:bxplt2}  Boxplot showing the relationship between latitude and which Sharpe-Schoolfield model best described the data, with data restricted to the tropics.}
+\end{figure}
+
+
+\begin{table}[ht]
+\centering
+\caption{Output of Tukey's test, testing for differences in the mean latitudes of each group of data. Groups are defined by which type of Sharpe-Schoolfield model best describes the data, i.e. full or partial Sharpe-Schoolfield models.}
+\vspace{0.2cm}
+\label{TukeyHSD}
+\begin{tabular}{llllll}
+\hline
+\multicolumn{5}{l}{Formula: Latitude $\sim$ Model}                                          \\ \hline
+          & \textbf{Difference} & \textbf{Lower Bound} & \textbf{Upper Bound} & \textbf{adjusted p-value} \\
+High-Full &-4.195               & -8.400               & 0.008                & 0.051     \\
+
+Low-Full  & 3.443               & -5.620               & 12.506               & 0.638     \\
+
+Low-High  & 7.637               & -1.798               & 17.073               & 0.136     \\               
+
+\end{tabular}
+\end{table}
+
+\section{Discussion}
+
+A possible reason as to why a link between latitude and model selection was not observed in the two Tukey's tests is that organisms tend to operate below the temperature at which the peak of their  thermal response curves occurs \citep{martin2008suboptimal}. When viewed along with this information, the initial hypothesis that species living closer to the equator should be operating closer to the upper temperature limits of their enzymes, i.e. closer to (T$_{\text{h}}$) seems flawed. While species from lower latitudes may have an general operating temperature shifted slightly towards, T$_{\text{h}}$, it is very possible that this effect is small.However, it is also a possibility that latitudinal information alone is not sufficient to predict the which Sharpe-Schoolfield model will best fit the thermal response data of an organism, as high altitudes would reduce the temperature of a specific location compared to that which would be predicted by latitude alone. While filtering the data to include only data collected from species from within the tropics may have reduced the effect of seasonality on environmental temperature, a more certain way to remove this effect is to check for the date that the species were collected from its natural habitat. Given more time it would be possible to control for both these effects on climate and a link between latitude and model selection could possibly be observed.
+
+The results of this project highlight one of the major trade-offs between phenomenological and mechanistic models, that of precision; the cubic model always described the observed data better than all three Sharpe-Schoolfield models. There are uses to having such a well fitting phenomenological model, there are various instances where mechanism is not important, and one simply wants to predict the response of an organism to a range of temperature, for example in bacterial synthesis of useful compounds; it is extremely useful to manufacturers to know what temperature to maintain a reaction, in order to produce the maximum amount of product, although adapting the phenomenological model past the set species for which it has been defined, or under novel conditions, such as with a second stressor included, would be very difficult. Conversely with the Sharpe-Schoolfield model, adapting the model to fit new scenarios is much more plausible; the wide-ranging impacts of mechanistic models of metabolism have been laid out by \cite{metabTheory} and were touched upon in the introduction to this report. Ultimately, it is the purpose of the model that decides how phenomenological/mechanistic it should be, although the possibilities posed by the extension of mechanistic models into new areas of ecology are compelling.
+
+\end{linenumbers}
+
+\bibliographystyle{agsm}
+\bibliography{la2417miniProject}
+
+\end{document}
+
+
+
+
+
