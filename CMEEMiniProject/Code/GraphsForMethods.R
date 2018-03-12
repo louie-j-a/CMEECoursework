@@ -72,6 +72,11 @@ logGraph <- ggplot(sub, aes(x=oneOverKT, y = logTraits)) + geom_point() +
   xlab(expression(frac(1, kT)))
 
 
+logGraph <- logGraph + annotate("text", x= 420, y = 3, label = "E", colour = "red") +
+  annotate("text", x= 200, y = 3, parse = TRUE, label = as.character(expression(E[h])), colour = "red") +
+  annotate("text", x= 850, y = 1.75, parse = TRUE, label = as.character(expression(E[l])), colour = "red")
+  
+
 pdf("../Results/logTPCcurve.pdf")
 logGraph
 invisible(dev.off())
